@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>In The Streets Of:</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="page-header text-center">
+      <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+      <!-- LOCAL INFORMATION -->
+      <div class="col-sm-6">
+        <div class="well">
+          <h3><span class="fa fa-user"></span> Local</h3>
+
+          <% if (user.local.email) { %>
+            <p>
+              <strong>id</strong>:
+              <%= user._id %><br>
+                <strong>email</strong>:
+                <%= user.local.email %><br>
+                  <strong>password</strong>:
+                  <%= user.local.password %>
+            </p>
+
+            <a href="/unlink/local" class="btn btn-default">Unlink</a>
+            <% } else { %>
+              <a href="/connect/local" class="btn btn-default">Connect Local</a>
+              <% } %>
+
+        </div>
+      </div>
+<div class="container">
+  <h1>Profile Photo Upload</h1>
+  <%= typeof msg != 'undefined' ? msg : '' %>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Profile Photo:</label>
+      <input name="proPic" type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+    <button class="btn" type="submit" name="button">Save</button>
+  </form>
+  <br>
+  <img src="  <%= typeof file != 'undefined' ? file : '' %>" class="reponsive-img" alt="">
+</div>
+
+
+
+      <div class="col-sm-6">
+        <h3>Messages</h3>
+        <ul class="messages">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <li class="message">
+              <span><%= messages[i].email %></span>
+              <span><%= messages[i].name %></span>
+              <span><%= messages[i].location %></span>
+              <span><%= messages[i].story %></span>
+              <span><%= messages[i].gameplan %></span>
+              <span><%= messages[i].asks %></span>
+              <span><%= messages[i].size %></span>
+              <span><%= messages[i].updates %></span>
+              <span><%= messages[i].thumbUp %></span>
+
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+            </li>
+            <% } %>
+        </ul>
+
+        <h2>Add a message</h2>
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" value="<%= user.local.email %>" name="email">
+            <input type="text" placeholder="Enter Name or Nickname" name="name">
+            <input type="text" placeholder="location" name="location">
+
+            <textarea name="story" placeholder="Share Your Story Here & Include The Shelters You Visit Most, Where Items May Be Dropped Off For You" rows="8" cols="80"></textarea>
+            <textarea name="gameplan" placeholder="Short Term Game Plan Here, e.g. make a resume, apply to jobs, mock interviews" rows="8" cols="80"></textarea>
+            <label for="Asks">Choose Items For Asks:</label>
+            <select id="asks" name="asks" multiple="7">
+              <option name="asks" value="Deoderant">Deoderant</option>
+              <option name="asks" value="Razor">Razor</option>
+              <option name="asks" value="Soap">Soap</option>
+              <option name="asks" value="Shampoo">Shampoo</option>
+              <option name="asks" value="Dress Shirt">Dress Shirt</option>
+              <option name="asks" value="Dress Pants">Dress Pants</option>
+              <option name="asks" value="Dress Shoes">Dress Shoes</option>
+
+          </select>
+            <textarea name="size" placeholder="Clothing Size: S, M, L, Xl, etc. and Shoe Size: 6 in women, or 10 in men" rows="8" cols="80"></textarea>
+            <textarea name="updates" placeholder="Share updates and progress here, such as: resume completed, scheduled an interview, got a job " rows="8" cols="80"></textarea>
+
+
+            <button type="submit">Submit</button>
+          </form>
+      </div>
+      <% } %>
+
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js">
+
+    </script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>

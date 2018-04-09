@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <title>In The Streets Of:</title>
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="menu">
+    &#9776;&nbsp;Menu
+    <div class="loginSignUp">
+      <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
+      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+    </div>
+</div>
+
+
+
+<div id="center-logo" style=""><a href="index" target="_blank" title="In The Streets Of:Boston">In The Streets Of:</a>
+</div>
+
+<section id="fact" class="hero">
+        <h2> Connect & Change A Life Today </h2>
+        <section  class="successStory">
+          <p class="fact">"Boston's homeless population increased nearly 4 percent in 2013 over the previous year, according to an annual point-in-time census. On Dec. 16, 2013, there were 7,255 homeless men, women and children in Boston, a 3.8 percent increase over the 2012 tally of 6,992." -City Of Boston 2012 Census</p>
+          <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+        </section>
+        <a id ="aboutA"href="#about"><span></span>Scroll</a>
+      </section>
+      <section id="about" class="demo">
+          <h1>How It Works</h1>
+          <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a href="#search"><span></span></a>
+      </section>
+      <section id="search">
+        <h1>Their Story & Asks</h1>
+        <ul class="messages">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <li class="message">
+              <span><%= messages[i].email %></span>
+              <span><%= messages[i].name %></span>
+              <span><%= messages[i].location %></span>
+              <span><%= messages[i].story %></span>
+              <span><%= messages[i].gameplan %></span>
+              <span><%= messages[i].asks %></span>
+              <span><%= messages[i].size %></span>
+              <span><%= messages[i].updates %></span>
+              <span><%= messages[i].thumbUp %></span>
+
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+
+            </li>
+            <% } %>
+        </ul>
+
+      </section>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js">
+
+</script>
+<script type="text/javascript" src="main.js">
+
+</script>
+</body>
+</html>

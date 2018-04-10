@@ -9,10 +9,14 @@
 </head>
 <body>
   <div class="menu">
-    &#9776;&nbsp;Menu
+    <!-- &#9776;&nbsp; -->
+    <a href="https://www.boston.gov/departments/neighborhood-development/services-homeless" class="appform-button" target="_blank"><span class="fa fa-ambulance"></span> Services </a>
+    <a href="http://www.communitychurchofboston.org/home/wp-content/uploads/2008/02/Homeless-and-Low-Income-Resource-Guide-2016.pdf" class="appform-button" target="_blank"><span class="fa fa-cutlery"></span> Weekly Meals & More</a>
+
+
     <div class="loginSignUp">
-      <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+      <a href="/login" class="btn appform-button"><span class="fa fa-user"></span>Login</a>
+      <a href="/signup" class="btn appform-button"><span class="fa fa-user"></span>Signup</a>
     </div>
 </div>
 
@@ -22,42 +26,80 @@
 </div>
 
 <section id="fact" class="hero">
-        <h2> Connect & Change A Life Today </h2>
         <section  class="successStory">
           <p class="fact">"Boston's homeless population increased nearly 4 percent in 2013 over the previous year, according to an annual point-in-time census. On Dec. 16, 2013, there were 7,255 homeless men, women and children in Boston, a 3.8 percent increase over the 2012 tally of 6,992." -City Of Boston 2012 Census</p>
-          <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
+          <h1>WE ALL HAVE A STORY</h1>
+          <h3>Get acquainted with the faces you pass by every day.</h3>
+          <h2>Ever Wonder Who They Are? Where They've Been? How to Help?</h2>
+          <h3>Make Today A Better Day For Someone In Your City.</h3>
+          <p>Take A Peek at Our Message Boards!</p>
+          <h2>"Never doubt that a small group of thoughtful, committed, citizens can change the world. Indeed, it is the only thing that ever has." – Margaret Mead</h2>
         </section>
-        <a id ="aboutA"href="#about"><span></span>Scroll</a>
+        <a id="aboutA" href="#about"><span></span>How It Works</a>
       </section>
       <section id="about" class="demo">
-          <h1>How It Works</h1>
-          <p>ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <a href="#search"><span></span></a>
+
+
+          <h2>How It Works</h2>
+
+          <h3>To Posts:</h3>
+          <ol>
+            <li>Please log in or register to create a post.</li>
+            <li>Users can share their Story, Location, Frequented Shelters, a Lists Of Needs and More!</li>
+            <li>Need A dress shirt for an interview? Post it in your lists of needs</li>
+            <li>This Space is for you. Use it to Communicate.</li>
+          </ol>
+          <h3>To Connect, Learn, Donate, Or Get Involved</h3>
+          <ol>
+            <li>Please scroll to the Message Boards.</li>
+            <li>If you have an item you'd like to donate that matches with an applicant's posted Needs feel free to drop off the item at one of their frequented shelters.</li>
+            <li>Someone may be looking for help with their resume, or mentorship, feel free to connect with them by sending an email.</li>
+            <li>There's 0 obligation.</li>
+          </ol>
+          <h3>Other Ways To Help The Temporarily Homeless:</h3>
+          <ul>
+            <li>Carry A $20 Gift Card that can be used for clothing, food, or purchases.</li>
+            <li>In the summer: water bottles come in handy!</li>
+            <li>Winter: handwarmers are welcomed.</li>
+            <li>Be kind.</li>
+            <li>A genuine exchange can go a long way.</li>
+          </ul>
+
+          <aside class="">
+
+
+            <p class="btn appform-button">37
+th Annual Homeless Census <span class="fa fa-info-circle"></span></p>
+<embed width="800px" height="950px" name="plugin" id="plugin" src="https://www.boston.gov/sites/default/files/document-file-11-2017/2017_homelesscensusresultspressrelease_171128.pdf" type="application/pdf" internalinstanceid="3" title="">
+          </aside>
+
+        <a href="#search"><span></span>Message Boards</a>
       </section>
       <section id="search">
-        <h1>Their Story & Asks</h1>
+        <h1>Message Boards</h1>
         <ul class="messages">
           <% for(var i=0; i<messages.length; i++) {%>
             <li class="message">
-              <span><%= messages[i].email %></span>
-              <span><%= messages[i].name %></span>
-              <span><%= messages[i].location %></span>
-              <span><%= messages[i].story %></span>
-              <span><%= messages[i].gameplan %></span>
-              <span><%= messages[i].asks %></span>
-              <span><%= messages[i].size %></span>
-              <span><%= messages[i].updates %></span>
-              <span><%= messages[i].thumbUp %></span>
+              <h1 id="name"><%= messages[i].name %></h1>
+              <h2 id="email"><a href="mailto:"><%= messages[i].email %></a></h2>
+              <span id="location"><%= messages[i].location %></span>
+              <span id="shelterList"><%= messages[i].shelterList %></span>
 
-              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <p id="story"><%= messages[i].story %></p>
+              <p id="gameplan"><%= messages[i].gameplan %></p>
+              <p id="needs"><%= messages[i].asks %></p>
+              <span id="size"><%= messages[i].size %></span>
+              <p id="updates"><%= messages[i].updates %></p>
+              <!-- <span id="likes"><%= messages[i].thumbUp %></span> -->
 
             </li>
             <% } %>
         </ul>
-
+<!-- <section class=""> -->
+<h2>"Friendship is unnecessary, like philosophy, like art. … It has no survival value; rather it is one of those things which give value to survival." – S. Lewis</h2>
+<!-- </section> -->
       </section>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">

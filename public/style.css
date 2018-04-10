@@ -17,21 +17,63 @@ html, body{
     a, a:hover{
       color:#ffffff;
       text-decoration: none;
+
     }
     div.menu{
        webkit-transition: background-color 1000ms ease-out 1s;
       -moz-transition: background-color 1000ms ease-out 1s;
       -o-transition: background-color 1000ms ease-out 1s;
      transition: background-color 1000ms ease-out 1s;
-      height:80px;
+      height:120px;
       padding:1rem 1rem;
       margin:0;
       font-size: 1.4em;
       font-weight: 600;
+      border-radius: 5px;
     }
     div.loginSignUp{
       margin-left: 90%;
       margin-top: -30px;
+    }
+    .appform-button {
+      display: block;
+      float: left;
+      text-align: center;
+      box-shadow: 0px 5px 20px #d6dee4;
+      -moz-box-shadow: 0px 5px 20px #d6dee4;
+      -webkit-box-shadow: 0px 5px 20px #d6dee4;
+      margin-top: 10px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      width: 12%;
+      border-radius: 60px;
+      -moz-border-radius: 60px;
+      -webkit-border-radius: 60px;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .btn{
+      width: 40%;
+      margin-left: 5%;
+    }
+
+    .appform-button:hover {
+      background-color: #4843d2;
+      box-shadow: 0px 10px 30px #aab9c3;
+      -moz-box-shadow: 0px 10px 30px #aab9c3;
+      -webkit-box-shadow: 0px 10px 30px #aab9c3;
+      text-decoration: none;
     }
   div#center-logo{
     text-align:center;
@@ -44,7 +86,12 @@ html, body{
   }
   p.fact{
     font-size: 2.4em;
+    width: 90%;
     padding: 10px;
+    margin-left: 5%;
+    margin-top: 5%;
+    background: rgba(54, 39, 51, 0.55);
+    border-radius: 5px;
   }
 
   /*  scroll from hero to About*/
@@ -64,37 +111,6 @@ section::after {
   background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
   background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
 }
-  /*
-  #fact a {
-    padding-top: 260px;
-    margin-top: 50px;
-  }
-  #fact a span {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 46px;
-    height: 46px;
-    margin-top: 500px;
-    margin-left: -23px;
-    border: 1px solid #fff;
-    border-radius: 100%;
-    box-sizing: border-box;
-  }
-  #fact a span::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    content: '';
-    width: 16px;
-    height: 16px;
-    margin: -12px 0 0 -8px;
-    border-left: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    box-sizing: border-box;
-  } */
 
 #about a {
   padding-top: 60px;
@@ -169,7 +185,46 @@ section::after {
   animation: sdb03 3s infinite;
   box-sizing: border-box;
 }
+/* =========Small Group Quote============ */
+p + h2{
+  margin-left: 9%;
+  margin-top: 9%;
+  width: 80%;
+  padding: 30px;
+  font-weight: bold;
+  font-size: 4em;
+  text-align: center;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
 /* ========================= */
+aside embed{
+margin-left: 20%;
+}
+
+aside p.btn{
+  float: left;
+  margin-bottom: 2%;
+  margin-left: 35.5%;
+}
+p span{
+  font-size: 3em;
+}
+
+aside{
+  background-color: transparent;
+  height: 100%;
+  width: 45%;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin-left: 50%;
+  margin-top: -25.5%;
+  text-align: center;
+}
+
+
+/* ======================= */
 #search a {
   padding-top: 60px;
 }
@@ -243,4 +298,9 @@ section::after {
   100% {
     opacity: 0;
   }
+}
+/*  messages*/
+li{
+  display: block;
+  margin: 10px;
 }

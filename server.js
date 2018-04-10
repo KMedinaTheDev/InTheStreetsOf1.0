@@ -6,6 +6,7 @@ var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
+var ObjectId = require('mongodb').ObjectID;
 var passport = require('passport');
 var flash    = require('connect-flash');
 
@@ -16,66 +17,102 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-// set storage engine for multer
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: function(req, file, cb){
-    cb(null, file.fieldname  + '-' + Date.now() + path.extname(file.originalname))
-  }
+// // set storage engine for multer
+// const storage = multer.diskStorage({
+//   destination: './public/uploads/',
+//   filename: function(req, file, cb){
+//     cb(null, file.fieldname  + '-' + Date.now() + path.extname(file.originalname))
+//   }
+// });
+//
+// // init uploads
+// var upload = multer({
+//   storage : storage,
+//   fileFilter: function(req, file, cb){
+//     checkFileType(file, cb);
+//   }
+// }).single('proPic')
+//
+// // check file typer
+//
+// function checkFileType(file, cb){
+//   // allowed ext
+//   const fileTypes = /jpeg|jpg|png|gif/;
+//   // check ext
+//   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+//   // cehck mime type
+//   const mimeType = fileTypes.test(file.mimetype);
+//   if(mimeType && extName){
+//     return cb(null,true);
+//   }else{
+//     cb('Error: Images Only!')
+//   }
+// }
+
+//---------------------------------------
+// IMAGE CODE
+//---------------------------------------
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/images/uploads')
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+var upload = multer({storage: storage});
+
+app.post('/up', upload.single('file-to-upload'), (req, res, next) => {
+
+    insertDocuments(db, 'public/images/uploads/' + req.file.filename, () => {
+        db.close();
+        res.json({'message': 'File uploaded successfully'});
+
+    });
 });
 
-// init uploads
-var upload = multer({
-  storage : storage,
-  fileFilter: function(req, file, cb){
-    checkFileType(file, cb);
-  }
-}).single('proPic')
+var insertDocuments = function(db, filePath, callback) {
+    var collection = db.collection('profilePics');
+    collection.insertOne({'imagePath' : filePath }, (err, result) => {
+        //assert.equal(err, null);
+        callback(result);
 
-// check file typer
+        console.log(result);
 
-function checkFileType(file, cb){
-  // allowed ext
-  const fileTypes = /jpeg|jpg|png|gif/;
-  // check ext
-  const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  // cehck mime type
-  const mimeType = fileTypes.test(file.mimetype);
-  if(mimeType && extName){
-    return cb(null,true);
-  }else{
-    cb('Error: Images Only!')
-  }
+    });
 }
+//---------------------------------------
+// IMAGE CODE END
+//---------------------------------------
 
-// post profile pic
-
-app.post('/upload', (req, res) => {
-console.log(req.user) ;
-
-  upload(req,res,(err)=>{
-    if(err){
-      res.render('profile',{
-        user: req.user,
-        msg:err
-      });
-    }else{
-      if(req.file == undefined){
-        res.render('profile',{
-          user: req.user,
-          msg: 'Error: No File Selected!'
-        });
-      }else{
-        res.render('profile',{
-          user: req.user,
-          msg: 'File Uploaded',
-          file: 'uploads/${req.file.filename}'
-        });
-      }
-      console.log(req.file);
-    }
-  })
-})
+// // post profile pic
+//
+// app.post('/upload', (req, res) => {
+// console.log(req.user) ;
+//
+//   upload(req,res,(err)=>{
+//     if(err){
+//       res.render('profile',{
+//         user: req.user,
+//         msg:err
+//       });
+//     }else{
+//       if(req.file == undefined){
+//         res.render('profile',{
+//           user: req.user,
+//           msg: 'Error: No File Selected!'
+//         });
+//       }else{
+//         res.render('profile',{
+//           user: req.user,
+//           msg: 'File Uploaded',
+//           file: 'uploads/${req.file.filename}'
+//         });
+//       }
+//       console.log(req.file);
+//     }
+//   })
+// })
 
 var configDB = require('./config/database.js');
 

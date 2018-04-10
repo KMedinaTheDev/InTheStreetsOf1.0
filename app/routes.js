@@ -1,4 +1,4 @@
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport, db, ObjectId) {
 
 // normal routes ===============================================================
 
@@ -27,10 +27,24 @@ module.exports = function(app, passport, db) {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
-            messages: result
+
+            messages: result,
           })
         })
     });
+
+    // get photos
+    app.get('/profilePics/:id', function(req, res) {
+  uId = ObjectId(req.params.id)
+  console.log(uId)
+  db.collection('profilePics').findOne({"_id": uId}, (err, result) => {
+    if (err) return console.log(err)
+    console.log(result)
+    res.render('index.ejs', {
+      file: 'uploads/${req.file.filename}'
+    })
+  })
+});
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -43,27 +57,47 @@ module.exports = function(app, passport, db) {
 // message board routes ===============================================================
 
     app.post('/messages', (req, res) => {
-      db.collection('messages').save({email: req.body.email, name: req.body.name, location:req.body.location, story: req.body.story, gameplan: req.body.gameplan, asks: req.body.asks, size: req.body.size, updates: req.body.updates, thumbUp: 0 }, (err, result) => {
+      db.collection('messages').save({email: req.body.email, name: req.body.name, location:req.body.location, shelterList: req.body.shelterList, story: req.body.story, gameplan: req.body.gameplan, asks: req.body.asks, size: req.body.size, updates: req.body.updates}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
       })
     })
 
-    app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({email: req.body.email, name: req.body.name,location:req.body.location, story: req.body.story, gameplan: req.body.gameplan, asks: req.body.asks, size: req.body.size, updates: req.body.updates }, {
-        $set: {
-          thumbUp:req.body.thumbUp + 1
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-    })
+    // app.put('/messages', (req, res) => {
+    //   db.collection('messages')
+    //   .findOneAndUpdate({ name: req.body.name, email: req.body.email,location:req.body.location, story: req.body.story, gameplan: req.body.gameplan, asks: req.body.asks, size: req.body.size, updates: req.body.updates }, {
+    //     $set: {
+    //       thumbUp:req.body.thumbUp + 1
+    //     }
+    //   }, {
+    //     sort: {_id: -1},
+    //     upsert: true
+    //   }, (err, result) => {
+    //     if (err) return res.send(err)
+    //     res.send(result)
+    //   })
+    // })
+
+    // update user with  image
+
+    // app.put('/users/:id', function(req, res) {
+    //    var uId = ObjectId(req.params.id)
+    //    console.log(uId)
+    //    db.collection('users').findOneAndUpdate({"_id": uId}, {
+    //      $set: {
+    //        photo:req.file.filename
+    //      }
+    //    }, {
+    //      sort: {_id: -1},
+    //      upsert: true
+    //    }, (err, result) => {
+    //      if (err) return console.log(err)
+    //      console.log(result)
+    //      res.send(err)
+    //      res.send(result)
+    //    })
+    //  })
 
     app.delete('/messages', (req, res) => {
       db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
